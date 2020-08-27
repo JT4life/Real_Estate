@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  {{  property_data.type }}
+{% endblock %}
+
+{% block content %}
+
+
+<section class="text-gray-700 body-font relative">
+  <div class="container px-5 py-24 mx-auto flex sm:flex-no-wrap flex-wrap">
+    <div class="lg:w-2/3 md:w-1/2 bg-gray-300 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative">
+      <iframe width="100%" height="100%" class="absolute inset-0" frameborder="0" title="map" marginheight="0" marginwidth="0" scrolling="no" src="https://maps.google.com/maps?width=100%&height=600&hS=en&q=%C4%B0{{property_data.address}}+{{property_data.city}}+{{property_data.state}}+{{property_data.zipCode}}(My%20Business%20Name)&ie=UTF8&t=&z=14&iwloc=B&output=embed" style="filter: grayscale(1) contrast(1.2) opacity(0.4);"></iframe>
+      <div class="bg-white relative flex flex-wrap py-6">
+<img height="200" width="300" alt="hero" src="{% if property_data.images %}{{ property_data.images.url }}{% else %}{% static 'images/no_image.png' %}{% endif %}">
+
+
+      </div>
+    </div>
+    <div class="lg:w-1/3 md:w-1/2 bg-white flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0">
+         <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
+    <img  alt="hero" src="{% if property_data.images %}{{ property_data.images.url }}{% else %}{% static 'images/no_image.png' %}{% endif %}">
+    <div >
+        <h1 >Address:{{property_data.address}}</h1>
+        <h1>   {{property_data.city}},{{property_data.state}},{{property_data.zipCode}}</h1>
+         <h2 >Bed: {{property_data.bed}} |  Bath:{{property_data.bath}}</h2>
+         <h3 > {% if property_data.purpose == 'rent' %}
+              <p ><h1>Price: ${{property_data.price}} /Month  |  Area: {{property_data.area}}sqft</h1></p>
+              {% else %}
+                  <p><h1>Price: ${{property_data.price}} | |  Area: {{property_data.area}}sqft</h1></p>
+              {% endif %} </h3>
+         <span class="text-gray-600 inline-flex items-center leading-none text-sm">
+
+              </span>
+       <div class="flex justify-center">
+       <a href="{% url 'contactAgent' property_data.id %}"> <button class="inline-flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg">Contact Agent</button>
+       </a> </div>
+    </div>
+  </div>
+        </div>
+  </div>
+</section>
+
+{% endblock %}

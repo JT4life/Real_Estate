@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block content %}
+
+<section class="text-gray-700 body-font">
+    <div align="center"><h2> {% for msg in messages %} {{ msg }} {% endfor %}</h2></div>
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-wrap -m-4">
+
+        {% for agent in agents %}
+
+      <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+        <a class="block relative h-48 rounded overflow-hidden">
+          <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="{% if agent.image %}{{ agent.image.url }}{% else %}{% static 'images/no_image.png' %}{% endif %}">
+        </a>
+        <div class="mt-4">
+            <form method="post" action="{% url 'getagents' %}">
+     {% csrf_token %}
+           <input type="text" name="aid" value="{{agent.name}}" hidden>
+          <h2 class="text-gray-900 title-font text-lg font-medium" >{{agent.name}}</h2>
+             <p class="mt-1">Email: {{agent.email}}</p>
+          <p class="mt-1">Phone: {{agent.phone}}</p>
+
+            <a class="text-green-500 leading-relaxed" >
+                 <button type="submit" class="inline-flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded">Listings</button>
+
+            </a>
+  </form>
+        </div>
+      </div>
+
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+
+{%  endblock %}

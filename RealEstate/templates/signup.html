@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    login
+{% endblock %}
+
+{% block content %}
+
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+<section class="text-gray-700 body-font relative">
+  <div class="container px-5 py-24 mx-auto">
+      <div class="lg:w-1/2 md:w-2/3 bg-gray-200 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 mx-auto" >
+      <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900" align="center">Sign Up</h1>
+             <form action="signup" method="POST">
+                 {% csrf_token %}
+			
+                <input class="sm:w-64 w-40 bg-gray-100 rounded sm:mr-4 mr-2 border border-gray-400 focus:outline-none focus:border-green-500 text-base py-2 px-4" type="text" name="fname" class="Name" placeholder="First name" required>&nbsp;
+                <input class="sm:w-64 w-40 bg-gray-100 rounded sm:mr-4 mr-2 border border-gray-400 focus:outline-none focus:border-green-500 text-base py-2 px-4"  type="text" name="lname" class="Name" placeholder="Last Name" required>&nbsp;<br>
+                 <input class="sm:w-64 w-40 bg-gray-100 rounded sm:mr-4 mr-2 border border-gray-400 focus:outline-none focus:border-green-500 text-base py-2 px-4" type="email" name="email" class="Name" placeholder="Email" required>&nbsp;
+                <input class="sm:w-64 w-40 bg-gray-100 rounded sm:mr-4 mr-2 border border-gray-400 focus:outline-none focus:border-green-500 text-base py-2 px-4" type="text" name="uname" class="Name" placeholder="User Name" required>&nbsp;<br>
+				<input class="sm:w-64 w-40 bg-gray-100 rounded sm:mr-4 mr-2 border border-gray-400 focus:outline-none focus:border-green-500 text-base py-2 px-4" type="password" name="password" class="Address" placeholder="password" required>&nbsp;
+                <input class="sm:w-64 w-40 bg-gray-100 rounded sm:mr-4 mr-2 border border-gray-400 focus:outline-none focus:border-green-500 text-base py-2 px-4" type="password" name="cpassword" class="Address" placeholder="re-password" required>&nbsp;<br>
+
+                <button class="inline-flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded" type="submit" value="Register" name="submit">Submit</button>&nbsp;
+                 <br><br><h1>Don't have account register here</h1>
+                 <br><a href="{% url 'login' %}"><button type="button" class="inline-flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded">Login</button></a>
+                 <div >
+                     {% for msg in messages %}
+                     {{ msg }}
+                     {% endfor %}
+                 </div>
+            </form></div>
+    </div>
+</section>
+{% endblock %}
