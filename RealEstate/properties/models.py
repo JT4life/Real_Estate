@@ -10,6 +10,7 @@ class agent(models.Model):
     email=models.EmailField(blank=False)
     phone=models.CharField(max_length=10)
     office_address=models.CharField(max_length=50,default='my',blank=True)
+    nick_name=models.CharField(max_length=25)
     def __str__(self):
         return self.name
 
