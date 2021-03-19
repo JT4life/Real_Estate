@@ -3,7 +3,7 @@ cffi==1.14.0
 chardet==3.0.4
 cryptography==2.9.2
 defusedxml==0.7.0rc1
-Django==2.2
+Django==2.2.18
 django-allauth==0.42.0
 django-reporting==0.21
 idna==2.9
